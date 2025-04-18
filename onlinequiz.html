@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Quiz</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fceabb, #f8b500); /* Gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #submit-btn {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #84fab0, #8fd3f4); /* Green to Blue Gradient */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .question p{
+          color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Colorful Quiz</h1>
+
+        <form id="quiz-form">
+
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> a. London</label>
+                    <label><input type="radio" name="q1" value="b"> b. Paris</label>
+                    <label><input type="radio" name="q1" value="c"> c. Rome</label>
+                    <label><input type="radio" name="q1" value="d"> d. Madrid</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. What is 2 + 2?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> a. 3</label>
+                    <label><input type="radio" name="q2" value="b"> b. 4</label>
+                    <label><input type="radio" name="q2" value="c"> c. 5</label>
+                    <label><input type="radio" name="q2" value="d"> d. 6</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. Which planet is known as the "Red Planet"?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> a. Venus</label>
+                    <label><input type="radio" name="q3" value="b"> b. Mars</label>
+                    <label><input type="radio" name="q3" value="c"> c. Jupiter</label>
+                    <label><input type="radio" name="q3" value="d"> d. Saturn</label>
+                </div>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="showResults()">Submit</button>
+        </form>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function showResults() {
+            const form = document.getElementById('quiz-form');
+            const resultsDiv = document.getElementById('results');
+            const answers = {
+                q1: 'b', // Paris
+                q2: 'b', // 4
+                q3: 'b', // Mars
+            };
+            let score = 0;
+
+            for (let question in answers) {
+                const selectedOption = form.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === answers[question]) {
+                    score++;
+                }
+            }
+
+            resultsDiv.textContent = `You scored ${score} out of ${Object.keys(answers).length}.`;
+        }
+    </script>
+
+</body>
+</html>
